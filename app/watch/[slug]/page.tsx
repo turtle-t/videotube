@@ -95,7 +95,11 @@ export default async function WatchPage({
           thumbnailUrl={video.thumbnail_url}
         />
 
-        <BannerAd />
+        <BannerAd
+          adKey={process.env.NEXT_PUBLIC_ADSTERRA_BANNER_300X250_KEY}
+          width={300}
+          height={250}
+        />
 
         <h1 className="text-xl font-semibold mt-4 mb-2">{video.title}</h1>
         <p className="text-sm text-neutral-500 mb-4">

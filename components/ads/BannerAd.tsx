@@ -2,24 +2,26 @@
 
 import { useEffect, useRef } from "react";
 
-export default function BannerAd() {
+export default function BannerAd({
+  adKey,
+  width,
+  height,
+}: {
+  adKey: string | undefined;
+  width: number;
+  height: number;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const key = process.env.NEXT_PUBLIC_ADSTERRA_BANNER_KEY;
-    const scriptUrl = process.env.NEXT_PUBLIC_ADSTERRA_BANNER_SCRIPT_URL;
-    const width = process.env.NEXT_PUBLIC_ADSTERRA_BANNER_WIDTH || "728";
-    const height = process.env.NEXT_PUBLIC_ADSTERRA_BANNER_HEIGHT || "90";
+    if (!adKey || !containerRef.current) return;
+    containerRef.current.innerHTML = "";
 
-    if (!key || !scriptUrl || !containerRef.current) return;
-
-    // Adsterra banners configure themselves via a global "atOptions" object
-    // read by their invoke.js script right after it loads
     const configScript = document.createElement("script");
     configScript.type = "text/javascript";
     configScript.innerHTML = `
       atOptions = {
-        'key' : '${key}',
+        'key' : '${adKey}',
         'format' : 'iframe',
         'height' : ${height},
         'width' : ${width},
@@ -30,12 +32,11 @@ export default function BannerAd() {
 
     const invokeScript = document.createElement("script");
     invokeScript.type = "text/javascript";
-    invokeScript.src = scriptUrl;
+    invokeScript.src = `https://www.highperformanceformat.com/${adKey}/invoke.js`;
     containerRef.current.appendChild(invokeScript);
-  }, []);
+  }, [adKey, width, height]);
 
-  // If ads aren't configured yet, render nothing (no broken empty box)
-  if (!process.env.NEXT_PUBLIC_ADSTERRA_BANNER_KEY) return null;
+  if (!adKey) return null;
 
   return <div ref={containerRef} className="flex justify-center my-4" />;
 }

@@ -14,7 +14,11 @@ export default async function HomePage() {
       </header>
 
       <main className="px-6 py-8 max-w-6xl mx-auto">
-        <BannerAd />
+        <BannerAd
+          adKey={process.env.NEXT_PUBLIC_ADSTERRA_BANNER_728X90_KEY}
+          width={728}
+          height={90}
+        />
 
         {videos.length === 0 ? (
           <p className="text-neutral-400 text-center py-20">
