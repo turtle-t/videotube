@@ -3,6 +3,8 @@ import { getAllVideos } from "@/lib/db";
 import DeleteVideoButton from "@/components/DeleteVideoButton";
 import LogoutButton from "@/components/LogoutButton";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardPage() {
   const videos = await getAllVideos();
 

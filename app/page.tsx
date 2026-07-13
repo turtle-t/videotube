@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllVideos } from "@/lib/db";
 import BannerAd from "@/components/ads/BannerAd";
 import NativeAd from "@/components/ads/NativeAd";
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const videos = await getAllVideos();
