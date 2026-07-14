@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getAllVideos } from "@/lib/db";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://yourdomain.com"; // update once you have a real domain
+  const baseUrl = "xxx1s.dpdns.org"; // update once you have a real domain
   const videos = await getAllVideos();
 
   const videoUrls: MetadataRoute.Sitemap = videos.map((video) => ({

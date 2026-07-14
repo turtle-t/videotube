@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | VideoTube",
   },
   description: "Watch videos on VideoTube.",
-  metadataBase: new URL("https://yourdomain.com"),
+  metadataBase: new URL("xxx1s.dpdns.org"),
 };
 
 export default function RootLayout({
